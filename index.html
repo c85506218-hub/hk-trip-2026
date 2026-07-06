@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>港深廣之旅 2026.07.16–22</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --d1:#00888A;--d2:#C0392B;--d3:#EF7C1C;--d4:#00A650;--d5:#9A3B26;--d6:#007DC5;--d7:#D4A017;
+  --bg:#F0F2F5;--card:#fff;--text:#1a1a2e;--muted:#888;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* HEADER */
+header{background:linear-gradient(135deg,#1B2A4A 0%,#B03A2E 100%);color:#fff;padding:16px 28px;display:flex;align-items:center;gap:16px}
+.h-flag{font-size:2rem}
+.h-title{font-size:1.3rem;font-weight:800}
+.h-sub{font-size:0.78rem;opacity:.8;margin-top:2px}
+.h-badges{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap}
+.h-badge{background:rgba(255,255,255,.18);padding:4px 12px;border-radius:20px;font-size:0.75rem;white-space:nowrap}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:1fr 360px;height:calc(100vh - 68px)}
+
+/* LEFT */
+.left{overflow-y:auto;padding:20px 24px}
+.left::-webkit-scrollbar{width:5px}
+.left::-webkit-scrollbar-thumb{background:#ddd;border-radius:3px}
+
+/* TABS */
+.tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.tab{padding:8px 16px;border:none;border-radius:24px;cursor:pointer;font-size:0.8rem;font-weight:700;background:#fff;color:#777;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.tab:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.tab.on{color:#fff;transform:translateY(-1px)}
+.tab[d="1"].on{background:var(--d1)}
+.tab[d="2"].on{background:var(--d2)}
+.tab[d="3"].on{background:var(--d3)}
+.tab[d="4"].on{background:var(--d4)}
+.tab[d="5"].on{background:var(--d5)}
+.tab[d="6"].on{background:var(--d6)}
+.tab[d="7"].on{background:var(--d7)}
+
+/* DAY CONTENT */
+.day{display:none}
+.day.on{display:block}
+
+/* DAY HEADER CARD */
+.dh{border-radius:16px;padding:20px 24px;color:#fff;margin-bottom:16px}
+.dh.d1{background:linear-gradient(135deg,#00888A,#16A085)}
+.dh.d2{background:linear-gradient(135deg,#C0392B,#E74C3C)}
+.dh.d3{background:linear-gradient(135deg,#EF7C1C,#E67E22)}
+.dh.d4{background:linear-gradient(135deg,#00A650,#27AE60)}
+.dh.d5{background:linear-gradient(135deg,#9A3B26,#BA4A00)}
+.dh.d6{background:linear-gradient(135deg,#007DC5,#2E86C1)}
+.dh.d7{background:linear-gradient(135deg,#D4A017,#B7950B)}
+.dh-label{font-size:.7rem;opacity:.8;letter-spacing:1px;text-transform:uppercase}
+.dh-date{font-size:1.7rem;font-weight:900;margin:4px 0}
+.dh-theme{font-size:.9rem;opacity:.9}
+.dh-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.dh-b{background:rgba(255,255,255,.2);padding:3px 12px;border-radius:20px;font-size:.75rem}
+
+/* FLIGHT CARD */
+.flight{background:linear-gradient(135deg,#1B2A4A,#2C4F7C);border-radius:12px;padding:16px;color:#fff;margin-bottom:14px}
+.fr{display:flex;align-items:center;gap:8px}
+.fc{text-align:center;flex:1}
+.fc .city{font-size:1rem;font-weight:800}
+.fc .t{font-size:.78rem;opacity:.75;margin-top:2px}
+.fi{font-size:.72rem;opacity:.65;margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,.15)}
+
+/* TIMELINE */
+.timeline{padding-left:28px;position:relative}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:#E0E0E0}
+.ti{position:relative;margin-bottom:14px}
+.ti::before{content:'';position:absolute;left:-24px;top:14px;width:10px;height:10px;border-radius:50%;background:#D0D0D0;border:2px solid #fff;box-shadow:0 0 0 2px #D0D0D0}
+.ti.hl::before{background:#E63462;box-shadow:0 0 0 2px #E63462}
+.ti.star::before{background:#F39C12;box-shadow:0 0 0 2px #F39C12}
+
+/* ITEM CARD */
+.ic{background:#fff;border-radius:12px;padding:14px 16px;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:box-shadow .2s}
+.ic:hover{box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.ic-time{font-size:.72rem;color:#aaa;font-weight:700;margin-bottom:3px}
+.ic-title{font-size:.93rem;font-weight:700;margin-bottom:4px}
+.ic-desc{font-size:.8rem;color:#666;line-height:1.55}
+.ic-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.tag{font-size:.7rem;padding:2px 8px;border-radius:10px;font-weight:600}
+.t-food{background:#FEF9E7;color:#B7950B}
+.t-tp{background:#EBF5FB;color:#1A5276}
+.t-act{background:#EAFAF1;color:#1E8449}
+.t-hotel{background:#F5EEF8;color:#6C3483}
+.t-tip{background:#FDEDEC;color:#922B21}
+.t-shop{background:#FDF2F8;color:#6E2F1A}
+.t-spa{background:#E8F8F5;color:#117A65}
+.t-temple{background:#FEF5E7;color:#9C640C}
+
+/* TIP BOX */
+.tip{background:#FFF8F0;border-left:3px solid #EF7C1C;padding:11px 14px;border-radius:0 8px 8px 0;margin-bottom:14px;font-size:.8rem;color:#555;line-height:1.6}
+.tip strong{color:#E67E22}
+
+/* SECTION LABEL */
+.sec{font-size:.7rem;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:1px;margin:18px 0 8px}
+
+/* GRID */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.mini-card{background:#fff;border-radius:10px;padding:11px 13px;box-shadow:0 2px 8px rgba(0,0,0,.06);font-size:.8rem}
+.mini-card .store{font-weight:800;font-size:.72rem;color:#E63462;margin-bottom:4px}
+.mini-card .item-name{font-weight:700;color:#333;margin-bottom:2px}
+.mini-card .item-note{color:#888;font-size:.73rem}
+
+/* RIGHT - MAP PANEL */
+.right{border-left:1px solid #E0E0E0;background:#fff;display:flex;flex-direction:column;height:calc(100vh - 68px);position:sticky;top:0}
+.map-top{padding:14px 16px;border-bottom:1px solid #E8E8E8;background:#FAFAFA}
+.map-top h3{font-size:.85rem;font-weight:700;margin-bottom:8px}
+.map-tabs{display:flex;gap:6px}
+.mt{padding:4px 12px;border:1px solid #ddd;border-radius:16px;background:#fff;font-size:.73rem;cursor:pointer;transition:all .2s;font-weight:600}
+.mt.on{background:#1B2A4A;color:#fff;border-color:#1B2A4A}
+.map-body{flex:1;overflow:hidden;position:relative}
+.map-body iframe{width:100%;height:100%;border:none;display:block}
+.metro-view{display:none;width:100%;height:100%;overflow-y:auto;padding:16px;background:#fff}
+.metro-view.on{display:block}
+.map-body iframe.hide{display:none}
+.map-foot{padding:8px 16px;border-top:1px solid #E8E8E8;font-size:.68rem;color:#aaa;text-align:center}
+.map-foot a{color:#007DC5;text-decoration:none}
+
+/* METRO / ROUTE DIAGRAM */
+.metro-section{margin-bottom:20px}
+.metro-section h4{font-size:.75rem;font-weight:800;margin-bottom:10px;padding:4px 10px;border-radius:6px;color:#fff;display:inline-block}
+.line-eal{background:#53B7E8}
+.line-tml{background:#9A3B26}
+.line-ktl{background:#00AB4E}
+.line-ael{background:#00888A}
+.line-hsr{background:#C0392B}
+.line-bus{background:#E67E22}
+.line-szm{background:#009943}
+
+.station-list{padding-left:4px}
+.st{display:flex;align-items:flex-start;gap:10px;margin-bottom:6px;font-size:.78rem}
+.st-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:2px;border:2px solid #fff;box-shadow:0 0 0 2px currentColor}
+.st-dot.eal{background:#53B7E8;color:#53B7E8}
+.st-dot.tml{background:#9A3B26;color:#9A3B26}
+.st-dot.ktl{background:#00AB4E;color:#00AB4E}
+.st-dot.hsr{background:#C0392B;color:#C0392B}
+.st-dot.bus{background:#E67E22;color:#E67E22}
+.st-you{font-weight:700;color:#E63462}
+.st-name{font-weight:600;color:#333}
+.st-note{color:#888;font-size:.72rem}
+.arrow-dn{text-align:center;color:#ccc;font-size:.8rem;margin:2px 0 2px 20px}
+
+/* KEY ROUTES BOX */
+.route-box{background:#F8F9FA;border-radius:10px;padding:12px 14px;font-size:.77rem;margin-bottom:10px}
+.route-box .r-title{font-weight:700;color:#333;margin-bottom:6px;font-size:.78rem}
+.route-step{display:flex;align-items:center;gap:6px;margin-bottom:4px;flex-wrap:wrap}
+.rs{padding:2px 8px;border-radius:8px;color:#fff;font-size:.7rem;font-weight:700}
+.rs.eal{background:#53B7E8}
+.rs.tml{background:#9A3B26}
+.rs.ktl{background:#00AB4E}
+.rs.ael{background:#00888A}
+.rs.hsr{background:#C0392B}
+.rs.bus{background:#E67E22}
+.rs.szm{background:#009943}
+.rs.walk{background:#95A5A6}
+.r-arrow{color:#aaa;font-size:.7rem}
+
+/* BORDER CROSSING TABLE */
+.xing{width:100%;border-collapse:collapse;font-size:.75rem;margin-bottom:14px}
+.xing th{background:#F0F2F5;padding:6px 8px;text-align:left;font-size:.7rem;color:#666}
+.xing td{padding:6px 8px;border-bottom:1px solid #F0F0F0;color:#444}
+
+/* EDIT MODE */
+.edit-fab{position:fixed;bottom:24px;right:24px;background:#E63462;color:#fff;border:none;border-radius:50px;padding:12px 20px;font-size:.82rem;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(230,52,98,.45);z-index:999;transition:all .25s;display:flex;align-items:center;gap:6px}
+.edit-fab:hover{transform:scale(1.05);box-shadow:0 6px 24px rgba(230,52,98,.55)}
+.edit-fab.active{background:#00A650;box-shadow:0 4px 20px rgba(0,166,80,.45)}
+.edit-fab.saved{background:#F39C12}
+body.edit-mode .ic-title,body.edit-mode .ic-desc{outline:2px dashed #F39C12!important;border-radius:4px;cursor:text;min-height:1em}
+body.edit-mode .ic-title:focus,body.edit-mode .ic-desc:focus{outline:2px solid #E63462!important;background:#FFFDF0}
+.edit-bar{display:none;background:#FFF9E6;border-bottom:2px solid #F39C12;padding:8px 28px;font-size:.78rem;color:#7D6608;align-items:center;gap:12px}
+body.edit-mode .edit-bar{display:flex}
+.edit-bar button{background:none;border:1px solid #E0C000;border-radius:8px;padding:3px 10px;font-size:.72rem;cursor:pointer;color:#7D6608}
+.edit-bar button:hover{background:#FFF3CC}
+
+/* NOTES */
+.day-note{margin:20px 0 4px}
+.day-note-label{font-size:.7rem;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.day-note-label span{background:#FEF9E7;color:#B7950B;padding:2px 8px;border-radius:8px;font-size:.68rem}
+.note-ta{width:100%;min-height:90px;border:2px dashed #E0C9A6;border-radius:12px;padding:12px 14px;font-size:.82rem;color:#444;background:#FFFDF5;resize:vertical;font-family:inherit;line-height:1.6;outline:none;transition:border .2s}
+.note-ta:focus{border-color:#EF7C1C;background:#fff}
+.note-ta::placeholder{color:#ccc}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr;height:auto}
+  .right{position:static;height:380px}
+  .h-badges{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-flag">🇭🇰</div>
+  <div>
+    <div class="h-title">港深廣之旅 2026</div>
+    <div class="h-sub">7月16日（四）— 7月22日（三）· 7天6夜 · 香港 → 深圳 → 廣州 → 香港</div>
+  </div>
+  <div class="h-badges">
+    <span class="h-badge">✈️ UO133 / UO136</span>
+    <span class="h-badge">🛀 深圳水療過夜</span>
+    <span class="h-badge">⚽ 7/19 廣州睇波</span>
+    <span class="h-badge">⛩️ 車公廟 + 黃大仙</span>
+    <span class="h-badge">📚 書展最後日 7/21</span>
+  </div>
+</header>
+
+<div class="edit-bar" id="editBar">
+  ✏️ 編輯模式開啟 — 點任意標題或說明文字即可修改
+  <button onclick="resetAll()">🗑️ 清除全部編輯</button>
+</div>
+
+<div class="layout">
+
+<!-- LEFT PANEL -->
+<div class="left">
+  <div class="tabs">
+    <button class="tab on" d="1" onclick="switchDay(1)">D1 · 7/16 四</button>
+    <button class="tab" d="2" onclick="switchDay(2)">D2 · 7/17 五</button>
+    <button class="tab" d="3" onclick="switchDay(3)">D3 · 7/18 六</button>
+    <button class="tab" d="4" onclick="switchDay(4)">D4 · 7/19 日</button>
+    <button class="tab" d="5" onclick="switchDay(5)">D5 · 7/20 一</button>
+    <button class="tab" d="6" onclick="switchDay(6)">D6 · 7/21 二</button>
+    <button class="tab" d="7" onclick="switchDay(7)">D7 · 7/22 三</button>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="day on" id="day1">
+    <div class="dh d1">
+      <div class="dh-label">Day 1 · 第一天</div>
+      <div class="dh-date">7月16日（四）</div>
+      <div class="dh-theme">✈️ 高雄出發 → 香港 → 直奔深圳水療 🛀</div>
+      <div class="dh-badges">
+        <span class="dh-b">🛫 UO133 15:00</span>
+        <span class="dh-b">🛀 湯崎 TENZ 過夜</span>
+      </div>
+    </div>
+
+    <div class="flight">
+      <div class="fr">
+        <div class="fc">
+          <div class="city">高雄 KHH</div>
+          <div class="t">15:00 出發</div>
+          <div class="t">高雄國際機場 I</div>
+        </div>
+        <div style="flex:2;text-align:center">
+          <div style="font-size:.7rem;opacity:.6">香港快運 UO133 · 經濟艙 · A321neo</div>
+          <div style="font-size:1.2rem;margin:2px 0">✈️ ─────</div>
+          <div style="font-size:.65rem;opacity:.5">約 1 小時 35 分</div>
+        </div>
+        <div class="fc">
+          <div class="city">香港 HKG</div>
+          <div class="t">16:35 抵達</div>
+          <div class="t">香港機場 T1</div>
+        </div>
+      </div>
+      <div class="fi">⚠️ 無餐點・無免費託運行李（手提限 7kg）· 香港快運起飛前 60 分鐘關櫃，建議 13:00 抵達機場</div>
+    </div>
+
+    <div class="tip">⚠️ <strong>證件提醒：</strong>全程一本 <strong>台胞證</strong> 搞定 — 入境香港、進出大陸都用它，出發前確認效期。護照也要帶（回台用）。</div>
+
+    <div class="timeline">
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">12:30</div>
+          <div class="ic-title">前往高雄機場</div>
+          <div class="ic-desc">UO133 15:00 起飛，13:00 抵達辦 check-in。香港快運 60 分鐘前關櫃，別遲到。手提行李 7kg 上限，登機前秤一下。</div>
+          <div class="ic-tags"><span class="tag t-tp">✈️ 搭機</span></div>
+        </div>
+      </div>
+      <div class="ti hl">
+        <div class="ic">
+          <div class="ic-time">16:35 · 香港機場 T1</div>
+          <div class="ic-title">抵達香港 🇭🇰</div>
+          <div class="ic-desc">台胞證入境。入境後先到客運大樓巴士站，<strong>八達通</strong>先加進 Apple Pay 或在 7-11 買實體卡，搭巴士、地鐵全靠它。</div>
+          <div class="ic-tags"><span class="tag t-tp">🛂 入境</span><span class="tag t-tip">八達通</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">17:15 · 機場巴士</div>
+          <div class="ic-title">A43 巴士 → 上水站（約 50 分鐘）</div>
+          <div class="ic-desc">機場客運大樓巴士總站搭 <strong>A43</strong>（往粉嶺／聯和墟方向），在 <strong>上水鐵路站</strong> 下車，車資約 HK$31.9（八達通）。</div>
+          <div class="ic-tags"><span class="tag t-tp">🚌 A43</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">18:15 · 東鐵線</div>
+          <div class="ic-title">上水 → 落馬洲（2 站）</div>
+          <div class="ic-desc">東鐵線往 <strong>落馬洲</strong> 方向，坐兩站到底。⚠️ 別坐錯往羅湖的班次（月台顯示會標明終點站）。</div>
+          <div class="ic-tags"><span class="tag t-tp">🚇 東鐵線</span></div>
+        </div>
+      </div>
+      <div class="ti hl">
+        <div class="ic">
+          <div class="ic-time">18:40 · 福田口岸</div>
+          <div class="ic-title">過關進深圳 🇨🇳</div>
+          <div class="ic-desc">落馬洲站出站就是過關通道，台胞證走人工或自助通道。福田口岸開放至 22:30，時間非常充裕。</div>
+          <div class="ic-tags"><span class="tag t-tp">🛂 過關</span></div>
+        </div>
+      </div>
+      <div class="ti star">
+        <div class="ic">
+          <div class="ic-time">19:15 · Check-in</div>
+          <div class="ic-title">🛀 湯崎·湯泉生活 TENZ（福田口岸店）</div>
+          <div class="ic-desc">出口岸即到，5 層樓 4 萬平米、300+ 按摩房。<strong>晚餐自助任食</strong>（進口水果山竹、青提、龍眼全天供應），按摩、汗蒸、泡湯，<strong>直接過夜當住宿</strong>。建議先在網上訂好過夜套票。</div>
+          <div class="ic-tags"><span class="tag t-spa">🛀 水療過夜</span><span class="tag t-food">🍜 自助餐</span><span class="tag t-hotel">🏨 今晚住這</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">💡 <strong>備案：</strong>想換老牌 <strong>皇室假期美食 SPA</strong>（羅湖）的話，改在上水搭往羅湖的東鐵班次，羅湖口岸過關即到。兩間都 24 小時、可過夜、含自助餐。</div>
+    <div class="tip">💰 <strong>大陸支付：</strong>出發前先裝好 <strong>支付寶</strong> 或 <strong>微信支付</strong> 並綁定台灣信用卡，大陸幾乎不收現金。台灣 SIM 漫遊可直接翻牆用 Google／LINE。</div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day" id="day2">
+    <div class="dh d2">
+      <div class="dh-label">Day 2 · 第二天</div>
+      <div class="dh-date">7月17日（五）</div>
+      <div class="dh-theme">🛀 睡到自然醒 → 高鐵去廣州 🚄</div>
+      <div class="dh-badges">
+        <span class="dh-b">🚄 福田 → 廣州南</span>
+        <span class="dh-b">🌃 珠江夜遊</span>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">~10:00</div>
+          <div class="ic-title">自然醒，早上再泡一輪</div>
+          <div class="ic-desc">水療早餐照吃、湯照泡，把套票時數用好用滿。</div>
+          <div class="ic-tags"><span class="tag t-spa">🛀 水療</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">12:00 · 退場</div>
+          <div class="ic-title">福田口岸 → 福田高鐵站</div>
+          <div class="ic-desc">深圳地鐵 <strong>4 號線</strong>（福田口岸站）→ <strong>會展中心站</strong> 轉 <strong>1 號線</strong> 一站到 <strong>購物公園</strong>／直達福田站，約 20 分鐘。</div>
+          <div class="ic-tags"><span class="tag t-tp">🚇 深圳地鐵</span></div>
+        </div>
+      </div>
+      <div class="ti hl">
+        <div class="ic">
+          <div class="ic-time">13:30 · 高鐵</div>
+          <div class="ic-title">🚄 福田 → 廣州南（約 30 分鐘）</div>
+          <div class="ic-desc">廣深港高鐵班次密集。到廣州南後轉地鐵 <strong>2 號線</strong> 進市區約 40 分鐘。⚠️ 高鐵票用 <strong>12306 App</strong>（台胞證註冊）提前買，暑假票會搶。</div>
+          <div class="ic-tags"><span class="tag t-tp">🚄 高鐵</span><span class="tag t-tip">12306 買票</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">16:00 · Check-in</div>
+          <div class="ic-title">🏨 廣州飯店入住</div>
+          <div class="ic-desc">建議住 <strong>天河／珠江新城</strong>（去看球、逛街都方便）或 <strong>北京路</strong> 一帶（老城中心）。</div>
+          <div class="ic-tags"><span class="tag t-hotel">🏨 住宿</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">18:00</div>
+          <div class="ic-title">北京路步行街 + 晚餐</div>
+          <div class="ic-desc">腳下就是千年古道遺址。晚餐吃 <strong>銀記腸粉</strong>、太平沙牛雜，或找一家老字號燒臘。</div>
+          <div class="ic-tags"><span class="tag t-act">🚶 逛街</span><span class="tag t-food">🍜 廣州味</span></div>
+        </div>
+      </div>
+      <div class="ti star">
+        <div class="ic">
+          <div class="ic-time">20:00 · 天字碼頭</div>
+          <div class="ic-title">🌃 珠江夜遊</div>
+          <div class="ic-desc">天字碼頭上船（北京路走過去 10 分鐘），約 70 分鐘遊珠江兩岸夜景，看廣州塔小蠻腰亮燈。船票提前在美團／攜程買較便宜。</div>
+          <div class="ic-tags"><span class="tag t-act">🚢 夜遊</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">💡 <strong>羅湖版備案：</strong>如果 D1 住的是羅湖皇室假期，直接走到旁邊 <strong>深圳站</strong> 搭廣深城際到 <strong>廣州東</strong>（約 80 分鐘），直達天河市區，不用轉地鐵，更順。</div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day" id="day3">
+    <div class="dh d3">
+      <div class="dh-label">Day 3 · 第三天</div>
+      <div class="dh-date">7月18日（六）</div>
+      <div class="dh-theme">🏮 廣州老城一日 · 早茶 + 西關風情</div>
+      <div class="dh-badges">
+        <span class="dh-b">🥟 飲早茶</span>
+        <span class="dh-b">🗼 廣州塔夜景</span>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="ti star">
+        <div class="ic">
+          <div class="ic-time">09:00</div>
+          <div class="ic-title">🥟 飲早茶 — 點都德 or 陶陶居</div>
+          <div class="ic-desc">蝦餃、腸粉、鳳爪、叉燒包配普洱，一盅兩件慢慢嘆。週六人多，早點到或先取號。</div>
+          <div class="ic-tags"><span class="tag t-food">🥟 早茶</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">10:30</div>
+          <div class="ic-title">陳家祠（陳氏書院）</div>
+          <div class="ic-desc">嶺南建築藝術巔峰，磚雕、灰塑、木雕滿屋頂。地鐵 1 號線陳家祠站直達，門票 ¥10。</div>
+          <div class="ic-tags"><span class="tag t-act">🏛️ 古蹟</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">12:30</div>
+          <div class="ic-title">永慶坊 + 粵劇藝術博物館</div>
+          <div class="ic-desc">老西關騎樓改建的文創街區，好逛好拍。粵劇藝術博物館的嶺南園林免費參觀。午餐在附近解決。</div>
+          <div class="ic-tags"><span class="tag t-act">📷 文創</span><span class="tag t-food">🍜 午餐</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">15:00</div>
+          <div class="ic-title">上下九步行街</div>
+          <div class="ic-desc">騎樓老街，順路吃陳添記魚皮、南信雙皮奶。</div>
+          <div class="ic-tags"><span class="tag t-shop">🛍️ 逛街</span><span class="tag t-food">🍧 甜品</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">16:30</div>
+          <div class="ic-title">沙面島</div>
+          <div class="ic-desc">150 棟歐式老建築的租界小島，樹蔭多、好散步，傍晚光線最好拍。</div>
+          <div class="ic-tags"><span class="tag t-act">📷 拍照</span></div>
+        </div>
+      </div>
+      <div class="ti star">
+        <div class="ic">
+          <div class="ic-time">19:00</div>
+          <div class="ic-title">🗼 廣州塔 + 花城廣場夜景</div>
+          <div class="ic-desc">上塔看夜景（提前網上買票便宜），或在對岸花城廣場、海心沙免費看小蠻腰亮燈。晚餐在珠江新城解決。</div>
+          <div class="ic-tags"><span class="tag t-act">🌃 夜景</span><span class="tag t-food">🍜 晚餐</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="day" id="day4">
+    <div class="dh d4">
+      <div class="dh-label">Day 4 · 第四天</div>
+      <div class="dh-date">7月19日（日）</div>
+      <div class="dh-theme">⚽ 足球日 · 廣州睇波</div>
+      <div class="dh-badges">
+        <span class="dh-b">⚽ 主場睇波</span>
+        <span class="dh-b">🍢 賽後宵夜</span>
+      </div>
+    </div>
+
+    <div class="tip">⚠️ <strong>購票提醒：</strong>大陸球賽<strong>實名制購票</strong>，用台胞證註冊購票平台，進場帶同一本證件。開球時間確定後回來把下面的時間調一調（右下角 ✏️ 編輯行程）。</div>
+
+    <div class="timeline">
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">上午 · 自由活動</div>
+          <div class="ic-title">天河商圈輕鬆逛</div>
+          <div class="ic-desc">正佳廣場、天環 Parc Central、天河城，或去二沙島江邊散步。留力晚上看球。</div>
+          <div class="ic-tags"><span class="tag t-shop">🛍️ 逛街</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">午後</div>
+          <div class="ic-title">午餐 + 回飯店休息避暑</div>
+          <div class="ic-desc">7 月廣州午後 35°C 起跳，睇波前先回飯店吹冷氣儲體力。</div>
+          <div class="ic-tags"><span class="tag t-food">🍜 午餐</span></div>
+        </div>
+      </div>
+      <div class="ti hl">
+        <div class="ic">
+          <div class="ic-time">開球前 90 分鐘出發</div>
+          <div class="ic-title">⚽ 前往球場睇波！</div>
+          <div class="ic-desc">視賽事場地（越秀山體育場／天河體育中心／花都）提早出發，安檢排隊要時間。⚠️ 球場禁帶外食飲料，水進場前喝完。</div>
+          <div class="ic-tags"><span class="tag t-act">⚽ 足球</span></div>
+        </div>
+      </div>
+      <div class="ti star">
+        <div class="ic">
+          <div class="ic-time">賽後</div>
+          <div class="ic-title">🍢 宵夜收尾</div>
+          <div class="ic-desc">廣州宵夜文化天下第一：炭爐生蠔、豬雜粥、炒田螺。體育東路、珠江新城一帶都有得吃。</div>
+          <div class="ic-tags"><span class="tag t-food">🍢 宵夜</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="day" id="day5">
+    <div class="dh d5">
+      <div class="dh-label">Day 5 · 第五天</div>
+      <div class="dh-date">7月20日（一）</div>
+      <div class="dh-theme">🚄 廣州 → 香港 · ⛩️ 沙田車公廟</div>
+      <div class="dh-badges">
+        <span class="dh-b">🚄 廣州東 → 西九龍</span>
+        <span class="dh-b">⛩️ 車公廟轉風車</span>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="ti hl">
+        <div class="ic">
+          <div class="ic-time">09:30 · 廣州東站</div>
+          <div class="ic-title">🚄 高鐵 廣州東 → 香港西九龍（約 75 分鐘）</div>
+          <div class="ic-desc">一地兩檢，出入境都在西九龍站辦，很快。⚠️ 週一早上班次提前在 12306 買好，帶台胞證取票進站。</div>
+          <div class="ic-tags"><span class="tag t-tp">🚄 高鐵</span><span class="tag t-tip">提前買票</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">11:30 · 西九龍</div>
+          <div class="ic-title">西九龍站 → 柯士甸站（步行 5 分鐘）</div>
+          <div class="ic-desc">出站跟指標走天橋到 <strong>柯士甸站</strong>，搭 <strong>屯馬線</strong>（往烏溪沙方向）。</div>
+          <div class="ic-tags"><span class="tag t-tp">🚶 步行</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">12:00 · 屯馬線</div>
+          <div class="ic-title">柯士甸 → 車公廟站（直達不用轉車，約 25 分鐘）</div>
+          <div class="ic-desc">屯馬線一條線坐到底，<strong>車公廟站 B 出口</strong> 出來走 3 分鐘就到廟門口。</div>
+          <div class="ic-tags"><span class="tag t-tp">🚇 屯馬線</span></div>
+        </div>
+      </div>
+      <div class="ti star">
+        <div class="ic">
+          <div class="ic-time">12:30</div>
+          <div class="ic-title">⛩️ 沙田車公廟</div>
+          <div class="ic-desc">拜車公、<strong>轉銅風車轉運</strong>（順時針轉一下）、擊鼓三聲、求籤。香油隨緣，廟外有解籤檔。</div>
+          <div class="ic-tags"><span class="tag t-temple">⛩️ 參拜</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">14:00 · 沙田</div>
+          <div class="ic-title">新城市廣場 午餐 + 逛街</div>
+          <div class="ic-desc">屯馬線一站到沙田站直結新城市廣場，吃碗雲吞麵或翠華，逛一逛再回市區。</div>
+          <div class="ic-tags"><span class="tag t-food">🍜 午餐</span><span class="tag t-shop">🛍️ 逛街</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">16:30 · Check-in</div>
+          <div class="ic-title">🏨 香港飯店入住（旺角／太子）</div>
+          <div class="ic-desc">⚠️ 刻意選 <strong>觀塘線沿線</strong>（旺角、太子），D7 一早去黃大仙只要 10 分鐘，回程不趕。</div>
+          <div class="ic-tags"><span class="tag t-hotel">🏨 住宿</span></div>
+        </div>
+      </div>
+      <div class="ti star">
+        <div class="ic">
+          <div class="ic-time">19:00</div>
+          <div class="ic-title">🌃 尖沙咀維港夜景 + 廟街夜市</div>
+          <div class="ic-desc">星光大道看維港，<strong>20:00 幻彩詠香江</strong>燈光秀。之後走去廟街夜市吃煲仔飯、煎蠔餅當宵夜。</div>
+          <div class="ic-tags"><span class="tag t-act">🌃 夜景</span><span class="tag t-food">🍚 煲仔飯</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 6 -->
+  <div class="day" id="day6">
+    <div class="dh d6">
+      <div class="dh-label">Day 6 · 第六天</div>
+      <div class="dh-date">7月21日（二）</div>
+      <div class="dh-theme">🇭🇰 香港自由日 · 太平山 + 書展最後一天</div>
+      <div class="dh-badges">
+        <span class="dh-b">🚡 太平山</span>
+        <span class="dh-b">📚 香港書展</span>
+      </div>
+    </div>
+
+    <div class="tip">📚 <strong>香港書展 2026：</strong>7/15–21 灣仔會展，今天是<strong>最後一天，只開到 17:00</strong>，成人票 HK$30。想去的話排在下午太平山之後剛好。</div>
+
+    <div class="timeline">
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">08:30</div>
+          <div class="ic-title">🥟 港式早茶 — 添好運 or 一點心</div>
+          <div class="ic-desc">最平價的米其林點心，酥皮焗叉燒包必點。旺角就有分店，飯店走路就到。</div>
+          <div class="ic-tags"><span class="tag t-food">🥟 早茶</span></div>
+        </div>
+      </div>
+      <div class="ti star">
+        <div class="ic">
+          <div class="ic-time">10:00</div>
+          <div class="ic-title">🚡 太平山纜車 + 凌霄閣</div>
+          <div class="ic-desc">中環花園道纜車總站上山，早去避排隊。山頂看維港全景，天氣好能望到九龍群山。纜車票提前網上買。</div>
+          <div class="ic-tags"><span class="tag t-act">🚡 纜車</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">13:00 · 中環</div>
+          <div class="ic-title">大館 + 石板街 + 叮叮車</div>
+          <div class="ic-desc">下山後逛中環：大館（舊警署古蹟群）、砵典乍街石板街，搭一段叮叮電車感受老香港。午餐蘭芳園絲襪奶茶配豬扒包。</div>
+          <div class="ic-tags"><span class="tag t-act">🏛️ 古蹟</span><span class="tag t-food">🥤 茶記</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">15:00 · 灣仔會展</div>
+          <div class="ic-title">📚 香港書展（最後一天，17:00 閉館）</div>
+          <div class="ic-desc">叮叮車或地鐵到灣仔，會展中心步行 10 分鐘。最後一天很多攤位出清特價。不去書展就改逛銅鑼灣。</div>
+          <div class="ic-tags"><span class="tag t-act">📚 書展</span><span class="tag t-shop">💸 出清價</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">18:00</div>
+          <div class="ic-title">銅鑼灣晚餐 + 最後採購</div>
+          <div class="ic-desc">SOGO、時代廣場。伴手禮：珍妮曲奇、美心流心奶黃月餅券、余仁生。⚠️ 記得手提行李只有 7kg，買太多就上網加購託運。</div>
+          <div class="ic-tags"><span class="tag t-shop">🛍️ 伴手禮</span><span class="tag t-food">🍜 晚餐</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">21:30</div>
+          <div class="ic-title">早點回飯店休息</div>
+          <div class="ic-desc">明天 06:45 就要出門拜黃大仙，行李今晚打包好。</div>
+          <div class="ic-tags"><span class="tag t-hotel">😴 早睡</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 7 -->
+  <div class="day" id="day7">
+    <div class="dh d7">
+      <div class="dh-label">Day 7 · 最終日</div>
+      <div class="dh-date">7月22日（三）</div>
+      <div class="dh-theme">⛩️ 黃大仙祈福 → ✈️ 搭機回高雄</div>
+      <div class="dh-badges">
+        <span class="dh-b">⛩️ 黃大仙 07:30</span>
+        <span class="dh-b">🛬 UO136 12:45</span>
+      </div>
+    </div>
+
+    <div class="tip">⏰ <strong>今天時間最緊，照表操課：</strong>12:45 起飛、11:45 關櫃。黃大仙 <strong>08:40 前必須上車</strong>，一超過 08:45 直接改搭的士（約 HK$250–280，35 分鐘），別賭巴士。</div>
+
+    <div class="timeline">
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">06:45 · 退房</div>
+          <div class="ic-title">帶行李出發去黃大仙</div>
+          <div class="ic-desc">觀塘線 旺角／太子 → <strong>黃大仙站</strong> 約 10 分鐘，B2 出口即到祠門口。手提行李輕便直接帶著走。</div>
+          <div class="ic-tags"><span class="tag t-tp">🚇 觀塘線</span></div>
+        </div>
+      </div>
+      <div class="ti hl">
+        <div class="ic">
+          <div class="ic-time">07:30 · 開門即入</div>
+          <div class="ic-title">⛩️ 黃大仙祠 — 有求必應</div>
+          <div class="ic-desc">開門第一批進場，人少清靜。上香、拜主殿、求籤（三聖堂旁有解籤檔但一早未開，籤文拍照回台再解）。<strong>08:30 前結束參拜</strong>。</div>
+          <div class="ic-tags"><span class="tag t-temple">⛩️ 祈福</span></div>
+        </div>
+      </div>
+      <div class="ti hl">
+        <div class="ic">
+          <div class="ic-time">08:40 · 上車！</div>
+          <div class="ic-title">🚌 E23 巴士 → 機場（約 80–90 分鐘）</div>
+          <div class="ic-desc">黃大仙沿龍翔道的巴士站搭 <strong>E23／E23A</strong>（往機場方向），車資約 HK$18.9。⚠️ 超過 08:45 還沒上車就改的士。</div>
+          <div class="ic-tags"><span class="tag t-tp">🚌 E23</span><span class="tag t-tip">逾時改的士</span></div>
+        </div>
+      </div>
+      <div class="ti">
+        <div class="ic">
+          <div class="ic-time">10:10 · 機場 T2</div>
+          <div class="ic-title">抵達機場，辦登機</div>
+          <div class="ic-desc">⚠️ UO136 從 <strong>T2 出發</strong>，下車認明二號客運大樓。11:45 關櫃，時間有約 1.5 小時緩衝。過安檢後吃個早午餐。</div>
+          <div class="ic-tags"><span class="tag t-tp">✈️ 登機</span></div>
+        </div>
+      </div>
+      <div class="ti star">
+        <div class="ic">
+          <div class="ic-time">12:45 起飛</div>
+          <div class="ic-title">🛫 UO136 回高雄</div>
+          <div class="ic-desc">14:15 落地高雄，旅程圓滿！機上無餐點，登機前買點東西帶上飛機。</div>
+          <div class="ic-tags"><span class="tag t-tp">✈️ 回程</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flight">
+      <div class="fr">
+        <div class="fc">
+          <div class="city">香港 HKG</div>
+          <div class="t">12:45 出發</div>
+          <div class="t">香港機場 T2</div>
+        </div>
+        <div style="flex:2;text-align:center">
+          <div style="font-size:.7rem;opacity:.6">香港快運 UO136 · 經濟艙 · A321neo</div>
+          <div style="font-size:1.2rem;margin:2px 0">✈️ ─────</div>
+          <div style="font-size:.65rem;opacity:.5">約 1 小時 30 分</div>
+        </div>
+        <div class="fc">
+          <div class="city">高雄 KHH</div>
+          <div class="t">14:15 抵達</div>
+          <div class="t">高雄國際機場 I</div>
+        </div>
+      </div>
+      <div class="fi">⚠️ T2 出發・無餐點・無免費託運（手提 7kg）· 有買伴手禮的話提前上網加購行李，機場櫃檯貴很多</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="right">
+  <div class="map-top">
+    <h3>🗺️ 大灣區地圖 & 路線</h3>
+    <div class="map-tabs">
+      <button class="mt on" onclick="switchMap('map')">地圖</button>
+      <button class="mt" onclick="switchMap('metro')">🚇 關鍵路線</button>
+    </div>
+  </div>
+  <div class="map-body">
+    <iframe id="gmap" src="https://maps.google.com/maps?q=22.8,113.9&z=9&output=embed" loading="lazy"></iframe>
+    <div class="metro-view" id="metroView">
+
+      <div class="metro-section">
+        <h4 style="background:#1B2A4A">🔑 三大關鍵移動日</h4>
+
+        <div class="route-box">
+          <div class="r-title">D1 · 7/16 香港機場 → 深圳福田口岸</div>
+          <div class="route-step"><span class="rs bus">A43 巴士</span><span class="r-arrow">→ 上水站（50 分）</span></div>
+          <div class="route-step"><span class="rs eal">東鐵線</span><span class="r-arrow">→ 落馬洲（2 站）</span></div>
+          <div class="route-step"><span class="rs walk">🛂 過關</span><span class="r-arrow">→ 福田口岸 · TENZ 就在旁邊</span></div>
+        </div>
+
+        <div class="route-box">
+          <div class="r-title">D5 · 7/20 廣州東 → 沙田車公廟</div>
+          <div class="route-step"><span class="rs hsr">高鐵</span><span class="r-arrow">→ 西九龍（75 分・一地兩檢）</span></div>
+          <div class="route-step"><span class="rs walk">步行 5 分</span><span class="r-arrow">→ 柯士甸站</span></div>
+          <div class="route-step"><span class="rs tml">屯馬線</span><span class="r-arrow">→ 車公廟站 B 出口（直達 25 分）</span></div>
+        </div>
+
+        <div class="route-box">
+          <div class="r-title">D7 · 7/22 黃大仙 → 機場 T2 ⏰</div>
+          <div class="route-step"><span class="rs ktl">觀塘線</span><span class="r-arrow">旺角 → 黃大仙（10 分）</span></div>
+          <div class="route-step"><span class="rs bus">E23 巴士</span><span class="r-arrow">→ 機場（80–90 分・HK$18.9）</span></div>
+          <div class="route-step"><span class="rs walk">備案</span><span class="r-arrow">的士 35 分 · 約 HK$250–280</span></div>
+        </div>
+      </div>
+
+      <div class="metro-section">
+        <h4 class="line-eal">東鐵線（過關用）</h4>
+        <div class="station-list">
+          <div class="st"><span class="st-dot eal"></span><div><span class="st-name">上水</span> <span class="st-note">A43 巴士在此下車轉乘</span></div></div>
+          <div class="arrow-dn">↓</div>
+          <div class="st"><span class="st-dot eal"></span><div><span class="st-name st-you">落馬洲</span> <span class="st-note">→ 福田口岸（06:30–22:30）· TENZ</span></div></div>
+          <div class="st"><span class="st-dot eal"></span><div><span class="st-name">羅湖</span> <span class="st-note">→ 羅湖口岸（06:30–24:00）· 皇室假期／深圳站城際</span></div></div>
+        </div>
+      </div>
+
+      <div class="metro-section">
+        <h4 class="line-tml">屯馬線（D5 車公廟）</h4>
+        <div class="station-list">
+          <div class="st"><span class="st-dot tml"></span><div><span class="st-name">柯士甸</span> <span class="st-note">西九龍站步行 5 分鐘</span></div></div>
+          <div class="arrow-dn">↓ 往烏溪沙方向</div>
+          <div class="st"><span class="st-dot tml"></span><div><span class="st-name st-you">車公廟</span> <span class="st-note">B 出口 → 車公廟 3 分鐘</span></div></div>
+          <div class="arrow-dn">↓</div>
+          <div class="st"><span class="st-dot tml"></span><div><span class="st-name">沙田圍／沙田</span> <span class="st-note">新城市廣場（午餐逛街）</span></div></div>
+        </div>
+      </div>
+
+      <div class="metro-section">
+        <h4 class="line-ktl">觀塘線（D7 黃大仙）</h4>
+        <div class="station-list">
+          <div class="st"><span class="st-dot ktl"></span><div><span class="st-name">太子／旺角</span> <span class="st-note">🏨 D5–D6 住這附近</span></div></div>
+          <div class="arrow-dn">↓ 約 10 分鐘</div>
+          <div class="st"><span class="st-dot ktl"></span><div><span class="st-name st-you">黃大仙</span> <span class="st-note">B2 出口即到祠門口 · 07:30 開門</span></div></div>
+        </div>
+      </div>
+
+      <div class="metro-section">
+        <h4 style="background:#555">🛂 口岸開放時間</h4>
+        <table class="xing">
+          <tr><th>口岸</th><th>開放時間</th><th>用途</th></tr>
+          <tr><td>福田口岸</td><td>06:30–22:30</td><td>D1 進深圳（TENZ）</td></tr>
+          <tr><td>羅湖口岸</td><td>06:30–24:00</td><td>備案（皇室假期）</td></tr>
+          <tr><td>西九龍站</td><td>隨班次</td><td>D5 高鐵一地兩檢</td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+  <div class="map-foot">
+    📍 <a href="https://maps.google.com/?q=沙田車公廟" target="_blank">車公廟</a> ·
+    <a href="https://maps.google.com/?q=黃大仙祠" target="_blank">黃大仙祠</a> ·
+    <a href="https://maps.google.com/?q=湯崎湯泉生活福田" target="_blank">TENZ 福田</a>
+  </div>
+</div>
+
+</div>
+
+<button class="edit-fab" id="editFab" onclick="toggleEdit()">✏️ 編輯行程</button>
+
+<script>
+// ── Day switching ────────────────────────────────────
+function switchDay(n){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.getAttribute('d')==n));
+  document.querySelectorAll('.day').forEach(d=>d.classList.toggle('on',d.id=='day'+n));
+  document.querySelector('.left').scrollTop=0;
+}
+
+// ── Map switching ────────────────────────────────────
+function switchMap(v){
+  document.querySelectorAll('.mt').forEach((b,i)=>b.classList.toggle('on',(v=='map')==(i==0)));
+  document.getElementById('gmap').classList.toggle('hide',v!='map');
+  document.getElementById('metroView').classList.toggle('on',v=='metro');
+}
+
+// ── Cloud sync (JSONBlob) ────────────────────────────
+const BLOB='https://jsonblob.com/api/jsonBlob/019f38a2-3ef5-70e0-9b2f-2aae2c14dfd3';
+const DAYS=7;
+let cloudData={notes:{"1":"","2":"","3":"","4":"","5":"","6":"","7":""},edits:{}};
+let saveTimer=null;
+
+async function cloudLoad(){
+  try{
+    const r=await fetch(BLOB);
+    if(r.ok) cloudData=await r.json();
+  }catch(e){ /* offline, use localStorage cache */ }
+}
+
+function cloudSave(){
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(async()=>{
+    for(let d=1;d<=DAYS;d++){
+      const el=document.getElementById('note'+d);
+      if(el) cloudData.notes[d]=el.value;
+    }
+    document.querySelectorAll('[data-eid]').forEach(el=>{
+      cloudData.edits[el.dataset.eid]=el.innerHTML;
+    });
+    localStorage.setItem('hk_cloud', JSON.stringify(cloudData));
+    try{
+      await fetch(BLOB,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(cloudData)});
+      showSyncStatus('☁️ 已同步');
+    }catch(e){ showSyncStatus('📴 離線暫存'); }
+  }, 800);
+}
+
+function showSyncStatus(msg){
+  let el=document.getElementById('syncStatus');
+  if(!el){
+    el=document.createElement('div');
+    el.id='syncStatus';
+    el.style.cssText='position:fixed;bottom:72px;right:24px;background:rgba(0,0,0,.6);color:#fff;padding:5px 12px;border-radius:20px;font-size:.72rem;z-index:998;transition:opacity .5s';
+    document.body.appendChild(el);
+  }
+  el.textContent=msg;
+  el.style.opacity='1';
+  setTimeout(()=>el.style.opacity='0',2000);
+}
+
+// ── Edit mode ────────────────────────────────────────
+let editMode=false;
+
+function toggleEdit(){
+  editMode=!editMode;
+  const fab=document.getElementById('editFab');
+  document.querySelectorAll('.ic-title,.ic-desc').forEach(el=>{ el.contentEditable=editMode?'true':'false'; });
+  document.body.classList.toggle('edit-mode',editMode);
+  if(editMode){
+    fab.textContent='💾 儲存完成';
+    fab.classList.add('active');
+  }else{
+    cloudSave();
+    fab.textContent='✅ 已儲存！';
+    fab.classList.remove('active');
+    fab.classList.add('saved');
+    setTimeout(()=>{ fab.textContent='✏️ 編輯行程'; fab.classList.remove('saved'); },1800);
+  }
+}
+
+function resetAll(){
+  if(confirm('確定清除所有自訂編輯和備註？這無法復原。')){
+    cloudData={notes:{"1":"","2":"","3":"","4":"","5":"","6":"","7":""},edits:{}};
+    localStorage.removeItem('hk_cloud');
+    fetch(BLOB,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(cloudData)});
+    location.reload();
+  }
+}
+
+// ── Notes ────────────────────────────────────────────
+function saveNote(d){ cloudSave(); }
+
+// ── Init ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', async ()=>{
+  document.querySelectorAll('.ic-title,.ic-desc').forEach((el,i)=>{
+    el.dataset.eid='c'+i;
+    el.contentEditable='false';
+  });
+
+  for(let d=1;d<=DAYS;d++){
+    const day=document.getElementById('day'+d);
+    const nd=document.createElement('div');
+    nd.className='day-note';
+    nd.innerHTML=`<div class="day-note-label">📝 今日備註 <span>☁️ 跨裝置同步</span></div>
+      <textarea class="note-ta" id="note${d}" placeholder="記下臨時想法、店家地址、球賽開球時間、匯率..." oninput="saveNote(${d})"></textarea>`;
+    day.appendChild(nd);
+  }
+
+  const cache=localStorage.getItem('hk_cloud');
+  if(cache){ try{ cloudData=JSON.parse(cache); applyData(); }catch(e){} }
+
+  showSyncStatus('☁️ 同步中...');
+  await cloudLoad();
+  applyData();
+  showSyncStatus('☁️ 已載入');
+});
+
+function applyData(){
+  for(let d=1;d<=DAYS;d++){
+    const el=document.getElementById('note'+d);
+    if(el && cloudData.notes[d]) el.value=cloudData.notes[d];
+  }
+  document.querySelectorAll('[data-eid]').forEach(el=>{
+    const s=cloudData.edits[el.dataset.eid];
+    if(s) el.innerHTML=s;
+  });
+}
+</script>
+</body>
+</html>
