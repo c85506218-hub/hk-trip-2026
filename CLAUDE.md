@@ -45,7 +45,10 @@ A self-contained, single-file travel itinerary website for a 7-day Hong Kong / S
 | Outbound flight | UO133 (HK Express), KHH→HKG, 15:00→16:35, T1, 7/16 |
 | Return flight | UO136, HKG→KHH, 12:45→14:15, departs **T2**, 7/22 |
 | Baggage | No free checked bag, 7kg carry-on only, counters close 60 min before departure |
-| D1 spa (overnight stay) | 湯崎 TENZ 福田口岸店 (backup: 皇室假期, 羅湖) |
+| D1 hotel (Shenzhen) | 深圳福田口岸希爾頓歡朋酒店 Hampton by Hilton, 裕亨路38號 (name pending user confirmation) |
+| D1 spa (evening only) | 湯崎 TENZ 福田口岸店 (backup: 皇室假期, 羅湖) |
+| D2–D4 hotel (Guangzhou) | TBD — user still deciding |
+| D5–D6 hotel (HK) | 九龍東如心酒店 Nina Hotel Kowloon East, 觀塘創業街38號, 牛頭角站 B6 exit 5 min |
 | D4 | Football match in Guangzhou, kickoff TBD — user edits time via edit mode |
 | D5 temple | 沙田車公廟, MTR 車公廟站 exit B |
 | D7 temple | 黃大仙祠, opens 07:30; must board E23 bus by 08:40 (taxi fallback) |
